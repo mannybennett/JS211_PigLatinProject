@@ -16,24 +16,41 @@ const pigLatin = (word) => {
   const vowels = ['a', 'e', 'i', 'o', 'u', 'y']
   const trimmedWord = word.trim().toLowerCase()
   let wordArr = Array.from(trimmedWord)
-
-  for (let i=0; i < vowels.length; i++) {
-    if (wordArr.at(0) === vowels[i]) {
-      wordArr.push('y', 'a', 'y')
-      const backToString = wordArr.join('')
-      return backToString
-    } else if (wordArr.at(1) === vowels[i]) {
-      wordArr = wordArr.concat(wordArr.splice(0, 1))
-      wordArr.push('a', 'y')
-      const backToString = wordArr.join('')
-      return backToString
-    } else {
-      wordArr = wordArr.concat(wordArr.splice(0, 2))
-      wordArr.push('a', 'y')
-      const backToString = wordArr.join('')
-      return backToString
+  
+  if (vowels.includes(wordArr[0])) {
+    wordArr.push('y', 'a', 'y')
+    return wordArr.join('')
+  } else {
+    for (let i=0; i < wordArr.length; i++) {
+      if (vowels.indexOf(wordArr[i]) > -1) {
+        wordArr = wordArr.concat(wordArr.splice(0, i))
+        wordArr.push('a', 'y')
+        return wordArr.join('')
+      }
     }
   }
+
+  // return `${wordArr.join('')}yay`
+
+// ***what i had before
+
+  // for (let i=0; i <= wordArr.length; i++) {
+  //   if (wordArr[0].includes(vowels[i])) {
+  //     wordArr.push('y', 'a', 'y')
+  //     const backToString = wordArr.join('')
+  //     return backToString
+  //   } else if (wordArr.at(1) === vowels[i]) {
+  //     wordArr = wordArr.concat(wordArr.splice(0, 1))
+  //     wordArr.push('a', 'y')
+  //     const backToString = wordArr.join('')
+  //     return backToString
+  //   } else {
+  //     wordArr = wordArr.concat(wordArr.splice(0, 2))
+  //     wordArr.push('a', 'y')
+  //     const backToString = wordArr.join('')
+  //     return backToString
+  //   }
+  // }
 }
 
 // ***original method
