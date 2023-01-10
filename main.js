@@ -12,22 +12,41 @@ const rl = readline.createInterface({
 
 
 const pigLatin = (word) => {
+
   const vowels = ['a', 'e', 'i', 'o', 'u', 'y']
   const trimmedWord = word.trim().toLowerCase()
-  for (let i=0; i <= vowels.length; i++) {
-    if (trimmedWord.charAt(0) === vowels[i]) {
-      const wordArr = Array.from(trimmedWord)
+  let wordArr = Array.from(trimmedWord)
+
+  for (let i=0; i < vowels.length; i++) {
+    if (wordArr.at(0) === vowels[i]) {
       wordArr.push('y', 'a', 'y')
       const backToString = wordArr.join('')
       return backToString
-    } else if (trimmedWord.charAt(1) === vowels[i]) {
-      const wordArr = Array.from(trimmedWord)
-      wordArr.slice(1).push('a', 'y')
+    } else if (wordArr.at(1) === vowels[i]) {
+      wordArr = wordArr.concat(wordArr.splice(0, 1))
+      wordArr.push('a', 'y')
+      const backToString = wordArr.join('')
+      return backToString
+    } else {
+      wordArr = wordArr.concat(wordArr.splice(0, 2))
+      wordArr.push('a', 'y')
       const backToString = wordArr.join('')
       return backToString
     }
   }
 }
+
+// ***original method
+// else if (trimmedWord.charAt(1) === vowels[i]) {
+//   const wordArr = Array.from(trimmedWord)
+//   const firstLetter = wordArr.shift()
+//   const firstLetterArr = Array.from(firstLetter)
+//   const newArr = wordArr.concat(firstLetterArr)
+//   newArr.push('a', 'y')
+//   const backToString = newArr.join('')
+//   return backToString
+// }
+
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js 
