@@ -22,7 +22,7 @@ const pigLatin = (word) => {
   const trimmedWord = word.trim().toLowerCase()
   let wordArr = Array.from(trimmedWord)
   console.log(word)
-  if (typeof parseInt(word) === 'number' || word === '') {
+  if (!isNaN(parseInt(word)) || word === '') {
     return document.getElementById('word').innerHTML = 'Please Enter a Valid Word'
   } else if (vowels.includes(wordArr[0])) {
     wordArr.push('y', 'a', 'y')
